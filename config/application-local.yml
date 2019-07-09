@@ -1,0 +1,45 @@
+#自动加载
+reload:
+  enable: true
+  monitor_dir: /var/www/html/esd/src
+  #自定义错误
+route:
+  error_controller_name: app\Exception\ExceptionHandler
+mysql:
+  default:
+    host: "mysql"
+    username: "root"
+    password: "123456"
+    port: "3306"
+    db: "rd029"
+    prefix: "rd_"
+
+redis:
+  default:
+    host: "redis"
+    port: "6379"
+    password: ""
+    select_db: 0
+    pool_max_number: 10
+  test:
+    host: "test.rd029.com"
+    port: "6379"
+    select_db: 0
+    pool_max_number: 10
+#命令行
+console:
+  cmd_class_list:
+    _test_cmd: app\Console\Test
+#定时任务
+scheduled:
+  min_interval_time: 1000
+  scheduled_tasks:
+    test:
+      name: test
+      expression: '0/1 * * * * *'
+      class_name: app\Task\TestScheduledTask
+      function_name: dynamic
+      process_group: all
+#钉钉报警
+ding:
+  token: 'ba50a59584022ca8af3628979e9b544c241fa58f0a3708158ea28533618f228e'

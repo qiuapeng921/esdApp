@@ -1,0 +1,54 @@
+esd:
+  # 环境
+  profiles:
+    active: local
+  #基础服务
+  server:
+    name: qiuapeng921
+    worker_num: 4
+    max_conn: 1024
+    debug: true
+    document_root: /var/www/html/esd/public
+    enable_static_handler: true
+  # 端口配置
+  port:
+    http:
+      host: 0.0.0.0
+      port: 9501
+      open_http_protocol: true
+      sock_type: 1
+    ws:
+      host: 0.0.0.0
+      port: 9502
+      open_websocket_protocol: true
+      sock_type: 1
+    tcp:
+      name: tcp
+      host: 0.0.0.0
+      port: 9503
+      sock_type: 1
+      open_length_check: true
+      package_length_type: 'N'
+      package_body_offset: 0
+      package_length_offset: 0
+  #日志
+  logger:
+    name: log
+    level: info
+    date_format: 'Y-m-d H:i:s'
+    allow_inline_line_breaks: true
+    ignore_empty_context_and_extra: true
+    color: true
+    max_files: 5
+  #进程
+  process:
+    queue:
+      name: queue
+      class_name: app\Process\QueueTask
+      group_name: TaskGroup
+  #日志追踪
+  tracing:
+    enable: true
+    host: 0.0.0.0
+    port: 9411
+    sampling_ratio: 1
